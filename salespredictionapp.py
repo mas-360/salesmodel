@@ -5,7 +5,7 @@ Created on Fri Aug 18 08:34:45 2023
 @author: 27823
 """
 
-mport streamlit as st
+import streamlit as st
 import pandas as pd
 import statsmodels.api as sm
 import plotly.express as px
