@@ -24,7 +24,7 @@ def main():
     3. Choose Forecast method (Read the explainer)  
     4. **Insight Gained:** Improve on business strategy, plan and allocate resources more efficiently, identify potential problems, set goals and targets.  
     """)
-    
+    st.sidebar.markdown("---")
 
     # Let user upload a CSV file
     uploaded_file = st.sidebar.file_uploader("Upload a CSV file", type=["csv"])
