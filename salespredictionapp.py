@@ -99,7 +99,7 @@ def generate_holt_winters_forecast(df, forecast_days):
     return forecast
 
 def display_forecast(df, forecast, forecast_days, forecast_method):
-    #st.write("## Below are our sales predictions:")
+    #st.write("## Below are your sales predictions:")
     
     # Get the last date in the original sales data
     last_date = df.index[-1]
