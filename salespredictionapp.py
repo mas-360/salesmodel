@@ -17,6 +17,7 @@ def main():
     img_logo = Image.open("images/Capture.PNG")
 
     st.header("Below are our sales predictions:")
+    st.markdown("[![Sales Predictions](images/Capture.PNG)](https://masinsight.streamlit.app/)")
     st.sidebar.image(img_logo)
     st.sidebar.header("User Input")
     
@@ -43,8 +44,8 @@ with st.expander(
     "**Time series forecasting model explainer:**", expanded=False
 ):
     st.write(""" Apply the right model according to your data and Industry:    
-             **ARIMA** focuses on modeling the relationships between past observations in time series data and can handle various data patterns that might not be predictable and consistent. Suitable Industry: Finance and Economics, Healthcare, Manufacturing, and Marketing.    
-             **Holt-Winters** emphasizes capturing trend and seasonality in time series data and is particularly useful for data with predictable and consistent seasonal patterns. Suitable Industry: Retail, Hospitality & Tourism, Agriculture and Energy.
+             **ARIMA** focuses on modeling the relationships between past observations in time series data and can handle various data patterns that might not be predictable and consistent. **Suitable Industry:** Finance and Economics, Healthcare, Manufacturing, and Marketing.    
+             **Holt-Winters** emphasizes capturing trend and seasonality in time series data and is particularly useful for data with predictable and consistent seasonal patterns. **Suitable Industry:** Retail, Hospitality & Tourism, Agriculture and Energy.
              """)
     
 def process_uploaded_file(uploaded_file):
