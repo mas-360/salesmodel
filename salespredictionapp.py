@@ -11,10 +11,10 @@ import statsmodels.api as sm
 import plotly.express as px
 from PIL import Image
 
-st.set_page_config(page_title="Sales Prediction Model", layout="centered")
+st.set_page_config(page_title="Sales Prediction Model", page_icon="bar-chart-line" ,layout="centered")
 
 def main():
-    img_logo = Image.open("C:/Users/27823/MASINSIGHT/econforbus/salesprediction/images/Capture.PNG")
+    img_logo = Image.open("images/Capture.PNG")
 
     st.header("Below are our sales predictions:")
     st.sidebar.image(img_logo)
@@ -122,7 +122,7 @@ def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
         
-local_css("C:/Users/27823/MASINSIGHT/masapp/style/style.CSS") 
+local_css("style/style.css") 
        
 st.markdown('---')
 
