@@ -147,7 +147,11 @@ with col1:
 with col2:
     pass
   
-
+st.markdown('---')
+# Adding some reference indexes:
+st.markdown('''
+Enquiries: masinsight360@gmail.com
+''')
 
 if __name__ == "__main__":
     main()
