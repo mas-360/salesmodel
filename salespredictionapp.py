@@ -18,7 +18,12 @@ def main():
 
     st.header("Below are our sales predictions:")
     st.sidebar.image(img_logo)
-    st.sidebar.header("User Input")
+    st.sidebar.header("""How to use this dashboard:  
+    1. Upload CSV file (Must include Sales & Date)
+    2. Choose Forecast days
+    3. Choose Forecast method (Read the explainer)
+    4. **Insight Gained:** Improve on business strategy, plan and allocate resources more efficiently, identify potential problems, set goals and targets.
+    """)
     
 
     # Let user upload a CSV file
