@@ -17,7 +17,6 @@ def main():
     img_logo = Image.open("images/Capture.PNG")
 
     st.header("Below are our sales predictions:")
-    st.markdown("[![Sales Predictions](images/Capture.PNG)](https://masinsight.streamlit.app/)")
     st.sidebar.image(img_logo)
     st.sidebar.header("User Input")
     
@@ -54,24 +53,25 @@ def process_uploaded_file(uploaded_file):
     return df
 
 def generate_arima_forecast(df, forecast_days):
+
     # Prepare the DataFrame
     df['date_column'] = pd.to_datetime(df['date_column'])
     df.set_index('date_column', inplace=True)
-    
+
     # Resample the data to the desired frequency (e.g., daily)
     resampled_df = df['sales_column'].resample('D').sum()
-    
+
     # Perform time series decomposition (trend, seasonal, residual)
     decomposition = sm.tsa.seasonal_decompose(resampled_df, model='additive')
-    
-    # Extract the trend component and perform forecasting
+
+    # Train the ARIMA model on the trend component
     trend = decomposition.trend.dropna()
-    model = sm.tsa.ARIMA(trend, order=(5, 1, 0))  # Example ARIMA order (p, d, q)
+    model = sm.tsa.ARIMA(trend, order=(5, 1, 0))
     fitted_model = model.fit()
-    
+
     # Forecast for the specified number of days
     forecast = fitted_model.forecast(steps=forecast_days)
-    
+
     return forecast
 
 def generate_holt_winters_forecast(df, forecast_days):
