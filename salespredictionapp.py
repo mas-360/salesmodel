@@ -11,7 +11,7 @@ import statsmodels.api as sm
 import plotly.express as px
 from PIL import Image
 
-st.set_page_config(page_title="Sales Prediction Model", page_icon="bar-chart-line" ,layout="centered")
+st.set_page_config(page_title="Sales Prediction Model", page_icon="📊" ,layout="centered")
 
 def main():
     img_logo = Image.open("images/Capture.PNG")
