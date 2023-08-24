@@ -13,6 +13,19 @@ from PIL import Image
 
 st.set_page_config(page_title="Sales Prediction Model", page_icon="📊" ,layout="centered")
 
+st.markdown(
+    """
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZKQ6SJNPY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9ZKQ6SJNPY');
+    </script>
+    """,
+    unsafe_allow_html=True
+)
+
 def main():
     img_logo = Image.open("images/Capture.PNG")
 
