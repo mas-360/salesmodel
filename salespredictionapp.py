@@ -35,7 +35,7 @@ st.sidebar.markdown("""> **How to use this dashboard:**
 4. **Insight Gained:** Improve on business strategy, plan and allocate resources more efficiently, identify potential problems, set goals and targets.  
 """)
 st.sidebar.markdown("---")
-st.sidebar.write("Contact: masinsight360@gmail.com")
+
 
 # Let user upload a CSV file
 uploaded_file = st.sidebar.file_uploader("Upload a CSV file", type=["csv"])
@@ -53,7 +53,9 @@ if uploaded_file is not None:
     else:
         predictions = generate_holt_winters_forecast(df, forecast_days)
     display_forecast(df, predictions, forecast_days, forecast_method)
-
+    
+st.sidebar.markdown("---")    
+st.sidebar.write("Contact: masinsight360@gmail.com")
 #Info
 with st.expander(
     "**Time series forecasting model explainer:**", expanded=False
