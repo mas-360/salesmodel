@@ -26,11 +26,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-def main():
-    img_logo = Image.open("images/Capture.PNG")
 
     st.header("Below are our sales predictions:")
-    st.sidebar.image(img_logo)
     st.sidebar.markdown("""> **How to use this dashboard:**    
     1. Upload a CSV file (Must include Sales & Date)  
     2. Choose Forecast days  
@@ -38,6 +35,7 @@ def main():
     4. **Insight Gained:** Improve on business strategy, plan and allocate resources more efficiently, identify potential problems, set goals and targets.  
     """)
     st.sidebar.markdown("---")
+    st.sidebar.write("Contact: masinsight360@gmail.com")
 
     # Let user upload a CSV file
     uploaded_file = st.sidebar.file_uploader("Upload a CSV file", type=["csv"])
@@ -136,36 +134,8 @@ def display_forecast(df, forecast, forecast_days, forecast_method):
     st.write("##")
     st.plotly_chart(fig, use_container_width=True)
 
-#Use local CSS
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-        
-local_css("style/style.css") 
        
 st.markdown('---')
-
-# --- CONTACT FORM ---
-st.header("Unlock the potential of your data today!")
-st.write("Take the first step towards getting your very own data app by completing the simple form below.")
-
-contact_form = """
-<form action="https://formsubmit.co/masinsight360@gmail.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="email" name="email" placeholder="Your email" required>
-    <button type="submit">Send</button>
-</form>
-"""
-# Use columns to organize the content
-col1, col2 = st.columns(2)
-
-with col1:
-    st.markdown(contact_form, unsafe_allow_html=True)
-
-with col2:
-    pass
-  
-
 
 if __name__ == "__main__":
     main()
