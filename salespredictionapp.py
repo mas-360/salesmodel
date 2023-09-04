@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+main# -*- coding: utf-8 -*-
 """
 Created on Fri Aug 18 08:34:45 2023
 
@@ -26,36 +26,36 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-st.header("Below are your sales predictions:")
-st.sidebar.markdown("""> **How to use this dashboard:**    
-1. Upload a CSV file (Must include Sales & Date)  
-2. Choose Forecast days  
-3. Choose Forecast method (Read the explainer)  
-4. **Insight Gained:** Improve on business strategy, plan and allocate resources more efficiently, identify potential problems, set goals and targets.  
-""")
-st.sidebar.markdown("---")
-
-
-# Let user upload a CSV file
-uploaded_file = st.sidebar.file_uploader("Upload a CSV file", type=["csv"])
-
-# Add input for forecast days (limited to a maximum of 31 days)
-forecast_days = st.sidebar.slider("Forecast for how many days?", 1, 31, 30)
-
-# Add radio button for forecast method
-forecast_method = st.sidebar.radio("Select forecast method:", ("ARIMA", "Holt-Winters"))
-
-if uploaded_file is not None:
-    df = process_uploaded_file(uploaded_file)
-    if forecast_method == "ARIMA":
-        predictions = generate_arima_forecast(df, forecast_days)
-    else:
-        predictions = generate_holt_winters_forecast(df, forecast_days)
-    display_forecast(df, predictions, forecast_days, forecast_method)
+def main():
+    st.header("Below are your sales predictions:")
+    st.sidebar.markdown("""> **How to use this dashboard:**    
+    1. Upload a CSV file (Must include Sales & Date)  
+    2. Choose Forecast days  
+    3. Choose Forecast method (Read the explainer)  
+    4. **Insight Gained:** Improve on business strategy, plan and allocate resources more efficiently, identify potential problems, set goals and targets.  
+    """)
+    st.sidebar.markdown("---")
     
-st.sidebar.markdown("---")    
-st.sidebar.write("Contact: masinsight360@gmail.com")
+    
+    # Let user upload a CSV file
+    uploaded_file = st.sidebar.file_uploader("Upload a CSV file", type=["csv"])
+    
+    # Add input for forecast days (limited to a maximum of 31 days)
+    forecast_days = st.sidebar.slider("Forecast for how many days?", 1, 31, 30)
+    
+    # Add radio button for forecast method
+    forecast_method = st.sidebar.radio("Select forecast method:", ("ARIMA", "Holt-Winters"))
+    
+    if uploaded_file is not None:
+        df = process_uploaded_file(uploaded_file)
+        if forecast_method == "ARIMA":
+            predictions = generate_arima_forecast(df, forecast_days)
+        else:
+            predictions = generate_holt_winters_forecast(df, forecast_days)
+        display_forecast(df, predictions, forecast_days, forecast_method)
+        
+    st.sidebar.markdown("---")    
+    st.sidebar.write("Contact: masinsight360@gmail.com")
 #Info
 with st.expander(
     "**Time series forecasting model explainer:**", expanded=False
