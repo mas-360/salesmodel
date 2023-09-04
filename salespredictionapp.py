@@ -137,8 +137,6 @@ def display_forecast(df, forecast, forecast_days, forecast_method):
     st.plotly_chart(fig, use_container_width=True)
 
        
-st.markdown('---')
-
 if __name__ == "__main__":
     main()
 
