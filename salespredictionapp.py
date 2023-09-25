@@ -56,7 +56,7 @@ def main():
         
     st.sidebar.markdown("---")    
     st.sidebar.markdown(
-    ":bug: Report bugs, issues, or problematic content [here](https://forms.gle/fVuPJ5zyYWXhqHmu6)!")
+    ":bug: Report bugs, issues, or problematic content [here](https://forms.gle/k3HufbhV8kUjWMK98)!")
     
 #Info
 with st.expander(
