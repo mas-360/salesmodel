@@ -35,8 +35,6 @@ def main():
     4. **Insight Gained:** Improve on business strategy, plan and allocate resources more efficiently, identify potential problems, set goals and targets.  
     """)
     st.sidebar.markdown("---")
-    st.sidebar.markdown(
-    ":bug: Report bugs, issues, or problematic content [here](https://forms.gle/fVuPJ5zyYWXhqHmu6)!")
     
     
     # Let user upload a CSV file
@@ -57,7 +55,9 @@ def main():
         display_forecast(df, predictions, forecast_days, forecast_method)
         
     st.sidebar.markdown("---")    
-    st.sidebar.write("Contact: masinsight360@gmail.com")
+    st.sidebar.markdown(
+    ":bug: Report bugs, issues, or problematic content [here](https://forms.gle/fVuPJ5zyYWXhqHmu6)!")
+    
 #Info
 with st.expander(
     "**Time series forecasting model explainer:**", expanded=False
