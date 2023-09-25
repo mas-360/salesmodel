@@ -35,6 +35,8 @@ def main():
     4. **Insight Gained:** Improve on business strategy, plan and allocate resources more efficiently, identify potential problems, set goals and targets.  
     """)
     st.sidebar.markdown("---")
+    st.sidebar.markdown(
+    ":bug: Report bugs, issues, or problematic content [here](https://forms.gle/fVuPJ5zyYWXhqHmu6)!")
     
     
     # Let user upload a CSV file
