@@ -12,6 +12,7 @@ import plotly.express as px
 from streamlit_lottie import st_lottie
 import requests
 from pmdarima import auto_arima
+from streamlit_extras.buy_me_a_coffee import button
 
 st.set_page_config(page_title="Sales Prediction Model", page_icon="📊" ,layout="centered")
 
