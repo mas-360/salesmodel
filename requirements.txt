@@ -1,4 +1,6 @@
 streamlit
 statsmodels
-Image
 plotly
+streamlit-lottie
+requests
+pmdarima
