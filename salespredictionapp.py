@@ -25,16 +25,9 @@ def load_lottieurl(url):
 # Load Lottie animation
 lottie_coding = load_lottieurl("https://lottie.host/093aa35f-2e91-4872-82d7-260e4480c984/bl0ai0rKts.json")
 st_lottie(lottie_coding, height=100, key="coding")
-st.write("Refine business strategy, optimize resources, or set goals in a few clicks")
+st.write("Refine business strategy, optimize resources, or set goals in a few clicks!")
 first_tab, second_tab = st.tabs(["💡 Tutorial", "📊 Sales Prediction"])
 with first_tab:
-    st.markdown("""> **How to use this dashboard:**    
-    1. Upload a CSV file (Must include Sales & Date)  
-    2. Choose Forecast days  
-    3. Choose Forecast method   
-    4. **Insight Gained:** Improve on business strategy, plan and allocate resources more efficiently, identify potential problems, set goals and targets.  
-    """) 
-
     # Print the recommendation
     recommendation_style = "background-color: #e9c46a; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0px;"
     title_style = "font-size: 20px; margin-bottom: 10px;"
@@ -46,6 +39,9 @@ with first_tab:
         f"<p style='{content_style}'><strong>Holt-Winters</strong> emphasizes capturing trend and seasonality in time series data and is particularly useful for data with predictable and consistent seasonal patterns. <strong>Suitable Industry:</strong> Retail, Hospitality & Tourism, Agriculture and Energy."
         "</div>",
         unsafe_allow_html=True)
+     # Add the Buy Me A Coffee button 
+    st.write("For exclusive features and analytics customizable to your preferences join the membership below:")
+    button(username="masinsight", floating=False, width=221)
     
 with second_tab:    
     def main():
