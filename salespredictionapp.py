@@ -56,7 +56,7 @@ with second_tab:
         forecast_days = st.slider("Forecast for how many days?", 1, 365, 30)
         
         # Add radio button for forecast method
-        forecast_method = st.radio("Select forecast method:", ("ARIMA", "Holt-Winters"))
+        forecast_method = st.radio("Select forecast method:", ("Holt-Winters", "ARIMA",))
     
         # Only display the seasonal period select box if ARIMA is selected
         if forecast_method == "ARIMA":
