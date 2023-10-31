@@ -4,3 +4,4 @@ plotly
 streamlit-lottie
 requests
 pmdarima
+streamlit-extras
