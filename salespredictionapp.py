@@ -23,6 +23,10 @@ def load_lottieurl(url):
         return None
     return r.json()
 
+#---LOAD ASSETS---
+video_file1 = open("videos/salespredictv2.mp4", "rb")
+video_bytes1 = video_file1.read()
+
 # Load Lottie animation
 lottie_coding = load_lottieurl("https://lottie.host/093aa35f-2e91-4872-82d7-260e4480c984/bl0ai0rKts.json")
 st_lottie(lottie_coding, height=100, key="coding")
@@ -40,6 +44,7 @@ with first_tab:
         f"<p style='{content_style}'><strong>Holt-Winters</strong> emphasizes capturing trend and seasonality in time series data and is particularly useful for data with predictable and consistent seasonal patterns. <strong>Suitable Industry:</strong> Retail, Hospitality & Tourism, Agriculture and Energy."
         "</div>",
         unsafe_allow_html=True)
+    st.video(video_bytes1)
      # Add the Buy Me A Coffee button 
     st.write("For exclusive features and analytics customizable to your preferences join the membership below:")
     button(username="masinsight", floating=False, width=221)
