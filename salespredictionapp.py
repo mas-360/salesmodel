@@ -45,9 +45,7 @@ with first_tab:
         "</div>",
         unsafe_allow_html=True)
     st.video(video_bytes1)
-     # Add the Buy Me A Coffee button 
-    st.write("For exclusive features and analytics customizable to your preferences join the membership below:")
-    button(username="masinsight", floating=False, width=221)
+
     
 with second_tab:    
     def main():
