@@ -182,7 +182,7 @@ footer = """
         }
     </style>
     <div class="footer">
-        <div>© Made by <a href="https://masinsightdata.com/">masinsightdata</a> 2023. All rights reserved.</div>
+        <div>© Made by <a href="https://masinsightdata.com/">masinsightdata</a> 2024. All rights reserved.</div>
         <div><a href="https://forms.gle/fVuPJ5zyYWXhqHmu6"> Contact Us</a></div>
     </div>
 """
