@@ -84,29 +84,29 @@ with second_tab:
         df = pd.read_csv(uploaded_file)
         return df
     
-def generate_arima_forecast(df, forecast_days, m):
-    # Prepare the DataFrame
-    df['date_column'] = pd.to_datetime(df['date_column'])
-    df.set_index('date_column', inplace=True)
-
-    # Resample the data to daily frequency
-    resampled_df = df['sales_column'].resample('D').sum()
-
-    # Fit a simple seasonal ARIMA (SARIMAX) model
-    # For simplicity, we use order=(1,1,1) and seasonal_order=(1,1,1,m)
-    model = sm.tsa.statespace.SARIMAX(
-        resampled_df,
-        order=(1, 1, 1),
-        seasonal_order=(1, 1, 1, m),
-        enforce_stationarity=False,
-        enforce_invertibility=False
-    )
-    fitted_model = model.fit(disp=False)
-
-    # Forecast
-    forecast = fitted_model.get_forecast(steps=forecast_days).predicted_mean
-
-    return forecast
+    def generate_arima_forecast(df, forecast_days, m):
+        # Prepare the DataFrame
+        df['date_column'] = pd.to_datetime(df['date_column'])
+        df.set_index('date_column', inplace=True)
+    
+        # Resample the data to daily frequency
+        resampled_df = df['sales_column'].resample('D').sum()
+    
+        # Fit a simple seasonal ARIMA (SARIMAX) model
+        # For simplicity, we use order=(1,1,1) and seasonal_order=(1,1,1,m)
+        model = sm.tsa.statespace.SARIMAX(
+            resampled_df,
+            order=(1, 1, 1),
+            seasonal_order=(1, 1, 1, m),
+            enforce_stationarity=False,
+            enforce_invertibility=False
+        )
+        fitted_model = model.fit(disp=False)
+    
+        # Forecast
+        forecast = fitted_model.get_forecast(steps=forecast_days).predicted_mean
+    
+        return forecast
 
 
     
@@ -195,6 +195,7 @@ footer = """
     </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
+
 
 
 
