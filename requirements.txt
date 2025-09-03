@@ -1,7 +1,9 @@
-streamlit
-statsmodels
-plotly
-streamlit-lottie
-requests
-pmdarima
-streamlit-extras
+streamlit==1.27.0
+pandas==2.1.1
+numpy==1.23.5
+pmdarima==2.0.4
+statsmodels==0.14.0
+plotly==5.17.0
+requests==2.31.0
+streamlit-lottie==0.2.4
+streamlit-extras==0.1.0
