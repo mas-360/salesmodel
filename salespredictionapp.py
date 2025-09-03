@@ -31,19 +31,19 @@ lottie_coding = load_lottieurl("https://lottie.host/093aa35f-2e91-4872-82d7-260e
 st_lottie(lottie_coding, height=100, key="coding")
 st.write("Refine business strategy, optimize resources, or set goals in a few clicks!")
 first_tab, second_tab = st.tabs(["💡 Tutorial", "📊 Sales Prediction"])
-with first_tab:
+##with first_tab:
     # Print the recommendation
-    recommendation_style = "background-color: #e9c46a; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0px;"
-    title_style = "font-size: 20px; margin-bottom: 10px;"
-    content_style = "font-size: 15px;"
-    st.markdown(
-        f"<div style='{recommendation_style}'>"
-        f"<h2 style='{title_style}'>Apply the right model according to your data and Industry:</h2>"
-        f"<p style='{content_style}'><strong>ARIMA</strong> focuses on modeling the relationships between past observations in time series data and can handle various data patterns that might not be predictable and consistent. <strong>Suitable Industry:</strong> Finance and Economics, Healthcare, Manufacturing, and Marketing."
-        f"<p style='{content_style}'><strong>Holt-Winters</strong> emphasizes capturing trend and seasonality in time series data and is particularly useful for data with predictable and consistent seasonal patterns. <strong>Suitable Industry:</strong> Retail, Hospitality & Tourism, Agriculture and Energy."
-        "</div>",
-        unsafe_allow_html=True)
-    st.video(video_bytes1)
+    #recommendation_style = "background-color: #e9c46a; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0px;"
+    #title_style = "font-size: 20px; margin-bottom: 10px;"
+    #content_style = "font-size: 15px;"
+    #st.markdown(
+        #f"<div style='{recommendation_style}'>"
+        #f"<h2 style='{title_style}'>Apply the right model according to your data and Industry:</h2>"
+        #f"<p style='{content_style}'><strong>ARIMA</strong> focuses on modeling the relationships between past observations in time series data and can handle various data patterns that might not be predictable and consistent. <strong>Suitable Industry:</strong> Finance and Economics, Healthcare, Manufacturing, and Marketing."
+        #f"<p style='{content_style}'><strong>Holt-Winters</strong> emphasizes capturing trend and seasonality in time series data and is particularly useful for data with predictable and consistent seasonal patterns. <strong>Suitable Industry:</strong> Retail, Hospitality & Tourism, Agriculture and Energy."
+        #"</div>",
+        #unsafe_allow_html=True)
+    #st.video(video_bytes1)
 
     
 with second_tab:    
@@ -190,11 +190,12 @@ footer = """
         }
     </style>
     <div class="footer">
-        <div>© Made by <a href="https://masinsightdata.com/">masinsightdata</a> 2024. All rights reserved.</div>
+        <div>© Made by <a href=Anthea Sago</div>
         <div><a href="https://forms.gle/fVuPJ5zyYWXhqHmu6"> Contact Us</a></div>
     </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
+
 
 
 
