@@ -5,6 +5,7 @@ statsmodels==0.14.0
 plotly==5.17.0
 requests==2.31.0
 streamlit-lottie==0.0.5
-streamlit-extras==0.1.0
+streamlit-extras
+
 
 
