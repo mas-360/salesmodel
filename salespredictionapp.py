@@ -11,7 +11,6 @@ import statsmodels.api as sm
 import plotly.express as px
 from streamlit_lottie import st_lottie
 import requests
-from pmdarima import auto_arima
 from streamlit_extras.buy_me_a_coffee import button
 
 st.set_page_config(page_title="Sales Prediction Model", page_icon="📊" ,layout="centered")
@@ -85,21 +84,30 @@ with second_tab:
         df = pd.read_csv(uploaded_file)
         return df
     
-    def generate_arima_forecast(df, forecast_days, m):
-        # Prepare the DataFrame
-        df['date_column'] = pd.to_datetime(df['date_column'])
-        df.set_index('date_column', inplace=True)
-    
-        # Resample the data to the desired frequency (e.g., daily)
-        resampled_df = df['sales_column'].resample('D').sum()
-    
-        # Use auto_arima to find the best model, passing in the selected m value
-        model = auto_arima(resampled_df, seasonal=True, m=m, trace=True, error_action="ignore", suppress_warnings=True)
-    
-        # Forecast for the specified number of days
-        forecast, conf_int = model.predict(n_periods=forecast_days, return_conf_int=True)
-    
-        return forecast
+def generate_arima_forecast(df, forecast_days, m):
+    # Prepare the DataFrame
+    df['date_column'] = pd.to_datetime(df['date_column'])
+    df.set_index('date_column', inplace=True)
+
+    # Resample the data to daily frequency
+    resampled_df = df['sales_column'].resample('D').sum()
+
+    # Fit a simple seasonal ARIMA (SARIMAX) model
+    # For simplicity, we use order=(1,1,1) and seasonal_order=(1,1,1,m)
+    model = sm.tsa.statespace.SARIMAX(
+        resampled_df,
+        order=(1, 1, 1),
+        seasonal_order=(1, 1, 1, m),
+        enforce_stationarity=False,
+        enforce_invertibility=False
+    )
+    fitted_model = model.fit(disp=False)
+
+    # Forecast
+    forecast = fitted_model.get_forecast(steps=forecast_days).predicted_mean
+
+    return forecast
+
 
     
     def generate_holt_winters_forecast(df, forecast_days):
@@ -187,6 +195,7 @@ footer = """
     </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
+
 
 
 
