@@ -55,7 +55,7 @@ def main():
     forecast_days = st.slider("Forecast for how many days?", 1, 365, 30)
     
     # Add radio button for forecast method
-    forecast_method = st.radio("Select forecast method:", ("Holt-Winters", "ARIMA",))
+    forecast_method = st.radio("Select forecast method:", ("Holt-Winters", "ARIMA"))
 
     # Only display the seasonal period select box if ARIMA is selected
     if forecast_method == "ARIMA":
@@ -194,6 +194,7 @@ footer = """
     </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
+
 
 
 
