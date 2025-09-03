@@ -30,7 +30,7 @@ video_bytes1 = video_file1.read()
 lottie_coding = load_lottieurl("https://lottie.host/093aa35f-2e91-4872-82d7-260e4480c984/bl0ai0rKts.json")
 st_lottie(lottie_coding, height=100, key="coding")
 st.write("Refine business strategy, optimize resources, or set goals in a few clicks!")
-first_tab, second_tab = st.tabs(["💡 Tutorial", "📊 Sales Prediction"])
+first_tab, second_tab = st.tabs(["📊 Sales Prediction"])
 ##with first_tab:
     # Print the recommendation
     #recommendation_style = "background-color: #e9c46a; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0px;"
@@ -191,10 +191,11 @@ footer = """
     </style>
     <div class="footer">
         <div>© Made by <a href=Anthea Sago</div>
-        <div><a href="https://forms.gle/fVuPJ5zyYWXhqHmu6"> Contact Us</a></div>
+        #<div><a href="https://forms.gle/fVuPJ5zyYWXhqHmu6"> Contact Us</a></div>
     </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
+
 
 
 
