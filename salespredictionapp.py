@@ -47,124 +47,124 @@ st.write("Refine business strategy, optimize resources, or set goals in a few cl
 
     
 #with second_tab:    
-    def main():
-        # Let user upload a CSV file
-        uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
-        
-        # Add input for forecast days (limited to a maximum of 365 days)
-        forecast_days = st.slider("Forecast for how many days?", 1, 365, 30)
-        
-        # Add radio button for forecast method
-        forecast_method = st.radio("Select forecast method:", ("Holt-Winters", "ARIMA",))
+def main():
+    # Let user upload a CSV file
+    uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
     
-        # Only display the seasonal period select box if ARIMA is selected
-        if forecast_method == "ARIMA":
-            m = st.selectbox("Select seasonal period:", (4, 7, 12), help="4 = Quarterly data with a yearly pattern, 7 = Daily Data with a weekly pattern, 12 = Monthly data with a yearly pattern")
-        else:
-            m = None
+    # Add input for forecast days (limited to a maximum of 365 days)
+    forecast_days = st.slider("Forecast for how many days?", 1, 365, 30)
     
-        st.subheader("Below are your sales predictions:")
-        
-        if uploaded_file is not None:
-            df = process_uploaded_file(uploaded_file)
-        else:
-            fixed_file_path = "randomsalesdata.csv"
-            df = pd.read_csv(fixed_file_path)
-            forecast_method = "Holt-Winters"
+    # Add radio button for forecast method
+    forecast_method = st.radio("Select forecast method:", ("Holt-Winters", "ARIMA",))
 
-        if forecast_method == "ARIMA":
-            predictions = generate_arima_forecast(df, forecast_days, m)
-        else:
-            predictions = generate_holt_winters_forecast(df, forecast_days)
-        display_forecast(df, predictions, forecast_days, forecast_method)
-         
-                    
-    def process_uploaded_file(uploaded_file):
-        # Read the uploaded CSV file into a pandas DataFrame
-        df = pd.read_csv(uploaded_file)
-        return df
+    # Only display the seasonal period select box if ARIMA is selected
+    if forecast_method == "ARIMA":
+        m = st.selectbox("Select seasonal period:", (4, 7, 12), help="4 = Quarterly data with a yearly pattern, 7 = Daily Data with a weekly pattern, 12 = Monthly data with a yearly pattern")
+    else:
+        m = None
+
+    st.subheader("Below are your sales predictions:")
     
-    def generate_arima_forecast(df, forecast_days, m):
-        # Prepare the DataFrame
-        df['date_column'] = pd.to_datetime(df['date_column'])
-        df.set_index('date_column', inplace=True)
-    
-        # Resample the data to daily frequency
-        resampled_df = df['sales_column'].resample('D').sum()
-    
-        # Fit a simple seasonal ARIMA (SARIMAX) model
-        # For simplicity, we use order=(1,1,1) and seasonal_order=(1,1,1,m)
-        model = sm.tsa.statespace.SARIMAX(
-            resampled_df,
-            order=(1, 1, 1),
-            seasonal_order=(1, 1, 1, m),
-            enforce_stationarity=False,
-            enforce_invertibility=False
-        )
-        fitted_model = model.fit(disp=False)
-    
-        # Forecast
-        forecast = fitted_model.get_forecast(steps=forecast_days).predicted_mean
-    
-        return forecast
+    if uploaded_file is not None:
+        df = process_uploaded_file(uploaded_file)
+    else:
+        fixed_file_path = "randomsalesdata.csv"
+        df = pd.read_csv(fixed_file_path)
+        forecast_method = "Holt-Winters"
+
+    if forecast_method == "ARIMA":
+        predictions = generate_arima_forecast(df, forecast_days, m)
+    else:
+        predictions = generate_holt_winters_forecast(df, forecast_days)
+    display_forecast(df, predictions, forecast_days, forecast_method)
+     
+                
+def process_uploaded_file(uploaded_file):
+    # Read the uploaded CSV file into a pandas DataFrame
+    df = pd.read_csv(uploaded_file)
+    return df
+
+def generate_arima_forecast(df, forecast_days, m):
+    # Prepare the DataFrame
+    df['date_column'] = pd.to_datetime(df['date_column'])
+    df.set_index('date_column', inplace=True)
+
+    # Resample the data to daily frequency
+    resampled_df = df['sales_column'].resample('D').sum()
+
+    # Fit a simple seasonal ARIMA (SARIMAX) model
+    # For simplicity, we use order=(1,1,1) and seasonal_order=(1,1,1,m)
+    model = sm.tsa.statespace.SARIMAX(
+        resampled_df,
+        order=(1, 1, 1),
+        seasonal_order=(1, 1, 1, m),
+        enforce_stationarity=False,
+        enforce_invertibility=False
+    )
+    fitted_model = model.fit(disp=False)
+
+    # Forecast
+    forecast = fitted_model.get_forecast(steps=forecast_days).predicted_mean
+
+    return forecast
 
 
-    
-    def generate_holt_winters_forecast(df, forecast_days):
-        # Prepare the DataFrame
-        df['date_column'] = pd.to_datetime(df['date_column'])
-        df.set_index('date_column', inplace=True)
-        
-        # Resample the data to the desired frequency (e.g., daily)
-        resampled_df = df['sales_column'].resample('D').sum()
-        
-        # Initialize Holt-Winters model
-        model = sm.tsa.ExponentialSmoothing(resampled_df, seasonal='add', seasonal_periods=7)
-        
-        # Fit the model
-        fitted_model = model.fit()
-        
-        # Forecast for the specified number of days
-        forecast = fitted_model.forecast(steps=forecast_days)
-        
-        return forecast
-    
-    def display_forecast(df, forecast, forecast_days, forecast_method):
-        #st.write("## Below are your sales predictions:")
-        
-        # Get the last date in the original sales data
-        last_date = df.index[-1]
-        
-        # Create forecast date range
-        forecast_dates = pd.date_range(start=last_date, periods=forecast_days, freq='D')
-        
-        # Combine sales data and forecast into a single DataFrame
-        combined_df = pd.DataFrame({'Date': df.index.tolist() + forecast_dates.tolist(),
-                                    'Sales': df['sales_column'].tolist() + forecast.tolist(),
-                                    'Type': ['Actual'] * len(df) + ['Forecast'] * len(forecast_dates)})
-        
-        # Specify color mapping for "Actual" and "Forecast"
-        color_mapping = {
-            "Actual": "#E76F51",  # or any other color you prefer
-            "Forecast": "#E9C46A"  # or any other color you prefer
-        }
-        
-        # Create a Plotly figure
-        fig = px.line(combined_df, x='Date', y='Sales', color='Type', line_dash='Type', color_discrete_map=color_mapping)
-        fig.update_layout(title='Sales Forecast with range slider', xaxis_title='Date', yaxis_title='Sales')
-        fig.update_xaxes(rangeslider_visible=True)
-        
-        # Print sales prediction information
-        st.write(f"Sales prediction for {forecast_days} days using {forecast_method} method is {forecast.sum():,.2f}")
-        
-        # Show the Plotly figure using st.plotly_chart
-        st.write("##")
-        st.plotly_chart(fig, use_container_width=True)
 
+def generate_holt_winters_forecast(df, forecast_days):
+    # Prepare the DataFrame
+    df['date_column'] = pd.to_datetime(df['date_column'])
+    df.set_index('date_column', inplace=True)
     
-           
-    if __name__ == "__main__":
-        main()
+    # Resample the data to the desired frequency (e.g., daily)
+    resampled_df = df['sales_column'].resample('D').sum()
+    
+    # Initialize Holt-Winters model
+    model = sm.tsa.ExponentialSmoothing(resampled_df, seasonal='add', seasonal_periods=7)
+    
+    # Fit the model
+    fitted_model = model.fit()
+    
+    # Forecast for the specified number of days
+    forecast = fitted_model.forecast(steps=forecast_days)
+    
+    return forecast
+
+def display_forecast(df, forecast, forecast_days, forecast_method):
+    #st.write("## Below are your sales predictions:")
+    
+    # Get the last date in the original sales data
+    last_date = df.index[-1]
+    
+    # Create forecast date range
+    forecast_dates = pd.date_range(start=last_date, periods=forecast_days, freq='D')
+    
+    # Combine sales data and forecast into a single DataFrame
+    combined_df = pd.DataFrame({'Date': df.index.tolist() + forecast_dates.tolist(),
+                                'Sales': df['sales_column'].tolist() + forecast.tolist(),
+                                'Type': ['Actual'] * len(df) + ['Forecast'] * len(forecast_dates)})
+    
+    # Specify color mapping for "Actual" and "Forecast"
+    color_mapping = {
+        "Actual": "#E76F51",  # or any other color you prefer
+        "Forecast": "#E9C46A"  # or any other color you prefer
+    }
+    
+    # Create a Plotly figure
+    fig = px.line(combined_df, x='Date', y='Sales', color='Type', line_dash='Type', color_discrete_map=color_mapping)
+    fig.update_layout(title='Sales Forecast with range slider', xaxis_title='Date', yaxis_title='Sales')
+    fig.update_xaxes(rangeslider_visible=True)
+    
+    # Print sales prediction information
+    st.write(f"Sales prediction for {forecast_days} days using {forecast_method} method is {forecast.sum():,.2f}")
+    
+    # Show the Plotly figure using st.plotly_chart
+    st.write("##")
+    st.plotly_chart(fig, use_container_width=True)
+
+
+       
+if __name__ == "__main__":
+    main()
 
 st.markdown("---")
 
@@ -195,6 +195,7 @@ footer = """
     </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
+
 
 
 
