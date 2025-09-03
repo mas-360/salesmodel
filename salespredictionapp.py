@@ -30,7 +30,7 @@ video_bytes1 = video_file1.read()
 lottie_coding = load_lottieurl("https://lottie.host/093aa35f-2e91-4872-82d7-260e4480c984/bl0ai0rKts.json")
 st_lottie(lottie_coding, height=100, key="coding")
 st.write("Refine business strategy, optimize resources, or set goals in a few clicks!")
-first_tab, second_tab = st.tabs(["📊 Sales Prediction"])
+#first_tab, second_tab = st.tabs(["📊 Sales Prediction"])
 ##with first_tab:
     # Print the recommendation
     #recommendation_style = "background-color: #e9c46a; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0px;"
@@ -46,7 +46,7 @@ first_tab, second_tab = st.tabs(["📊 Sales Prediction"])
     #st.video(video_bytes1)
 
     
-with second_tab:    
+#with second_tab:    
     def main():
         # Let user upload a CSV file
         uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
@@ -195,6 +195,7 @@ footer = """
     </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
+
 
 
 
